@@ -11,7 +11,16 @@ const ListItemsViewer = function (props) {
                     props.items.filter(
                         (item) => (item.list === props.currList && item.done === false)
                     ).map(
-                        (item) => (<ListItem item={item} key={item.id} onItemClick={props.onItemClick} />)
+                        (item) => (<ListItem
+                                item={item}
+                                key={item.id}
+                                onCheckboxClick={props.onCheckboxClick}
+                                onItemClick={props.onItemClick}
+                                selectedItem={props.selectedItem}
+                                editModeItem={props.editModeItem}
+                                onChangeItemEdit={props.onChangeItemEdit}
+                                onBlur={props.onBlur}
+                            />)
                     )
                 }
             </ul>

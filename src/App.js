@@ -11,25 +11,52 @@ class App extends React.Component {
             currList: props.lists[0],
             items: props.items,
             lists: props.lists,
+            selectedItem: null,
+            editModeItem: null,
         };
+
+        this.listCount = 1;
 
         this.handleItemAddEvent = this.handleItemAddEvent.bind(this);
         this.handleListClickEvent = this.handleListClickEvent.bind(this);
         this.handleItemClickEvent = this.handleItemClickEvent.bind(this);
+        this.handleItemCheckboxClickEvent = this.handleItemCheckboxClickEvent.bind(this);
         this.handleListAddEvent = this.handleListAddEvent.bind(this);
+        this.handleItemEditChange = this.handleItemEditChange.bind(this);
+        this.handleItemEditBlur = this.handleItemEditBlur.bind(this);
+    }
+
+    handleItemEditBlur() {
+        console.log('handleItemEditBlur()')
+        this.setState({ selectedItem : null, editModeItem : null });
+    }
+
+    handleItemEditChange(event, item) {
+        item.text = event.target.value;
+        this.setState({ items: this.state.items });
     }
 
     handleListClickEvent(event, list) {
         console.log('handleListClickEvent() called with list: ', list.name);
-        this.setState({ currList: list});
+        this.setState({ currList: list });
     }
 
     handleItemAddEvent() {
-        this.state.items.push(new ItemData('', false, this.state.currList));
-        this.setState({ items: this.state.items });
+        var newItem = new ItemData('', false, this.state.currList);
+        this.state.items.push(newItem);
+        this.setState({ items: this.state.items, selectedItem: newItem, editModeItem: newItem });
     }
 
     handleItemClickEvent(event, item) {
+        console.log('handleItemClickEvent() with item: ', item);
+        if (item === this.state.selectedItem) {
+            this.setState({ editModeItem: item, selectedItem: null });
+        } else {
+            this.setState({ selectedItem: item });
+        }
+    }
+
+    handleItemCheckboxClickEvent(event, item) {
         console.log('handleItemClickEvent() with item: ', item);
         item.done = !item.done;
 
@@ -38,7 +65,7 @@ class App extends React.Component {
 
     handleListAddEvent() {
         console.log('handleListAddEvent()');
-        this.state.lists.push( new ListData(''));
+        this.state.lists.push(new ListData(`새로운 목록 ${this.listCount++}`));
         this.setState({ lists : this.state.lists });
     }
 
@@ -47,8 +74,9 @@ class App extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log('componentDidUpdate()');
-        console.log('the last item of items: ', this.state.items[this.state.items.length - 1]);
+        console.log('## componentDidUpdate()');
+        console.log('## items: ', this.state.items);
+        console.log('## editModeItem: ', this.state.editModeItem);
     }
 
     render() {
@@ -59,12 +87,18 @@ class App extends React.Component {
                         lists={this.props.lists} 
                         onListClick={this.handleListClickEvent} 
                         onListAddClick={this.handleListAddEvent}
+                        editModeItem={this.state.editModeItem}
                     />
                     <MainPane 
                         items={this.state.items}
                         currList={this.state.currList}
                         onAddButtonClick={this.handleItemAddEvent}
-                        onLiskItemClick={this.handleItemClickEvent}
+                        onCheckboxClick={this.handleItemCheckboxClickEvent}
+                        onItemClick={this.handleItemClickEvent}
+                        selectedItem={this.state.selectedItem}
+                        editModeItem={this.state.editModeItem}
+                        onChangeItemEdit={this.handleItemEditChange}
+                        onBlur={this.handleItemEditBlur}
                     />
                 </div>
             </div>

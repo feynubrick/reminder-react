@@ -12,7 +12,12 @@ const CompletedItemsViewer = function (props) {
                     props.items.filter(
                         (item) => (item.list === props.currList && item.done === true)
                     ).map(
-                        (item) => (<ListItem item={item} key={item.id} onItemClick={props.onItemClick} />)
+                        (item) => (<ListItem
+                                item={item}
+                                key={item.id}
+                                onCheckboxClick={props.onCheckboxClick}
+                                onItemClick={props.onItemClick}
+                            />)
                     )
                 }
             </ul>
