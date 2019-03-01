@@ -32,13 +32,22 @@ class App extends React.Component {
     }
 
     handleItemEditChange(event, item) {
-        item.text = event.target.value;
-        this.setState({ items: this.state.items });
+        if (item instanceof ItemData) {
+            item.text = event.target.value;
+            this.setState({ items: this.state.items });
+        } else if (item instanceof ListData) {
+            item.name = event.target.value;
+            this.setState({ lists: this.state.lists });
+        }
     }
 
     handleListClickEvent(event, list) {
         console.log('handleListClickEvent() called with list: ', list.name);
-        this.setState({ currList: list });
+        if (list === this.state.selectedItem) {
+            this.setState({ editModeItem: list, selectedItem: null});
+        } else {
+            this.setState({ currList: list, selectedItem: list});
+        }
     }
 
     handleItemAddEvent() {
@@ -60,7 +69,7 @@ class App extends React.Component {
         console.log('handleItemClickEvent() with item: ', item);
         item.done = !item.done;
 
-        this.setState({ items: this.state.items });
+        this.setState({ items: this.state.items, selectedItem: null});
     }
 
     handleListAddEvent() {
@@ -76,6 +85,7 @@ class App extends React.Component {
     componentDidUpdate() {
         console.log('## componentDidUpdate()');
         console.log('## items: ', this.state.items);
+        console.log('## selectedItem: ', this.state.selectedItem);
         console.log('## editModeItem: ', this.state.editModeItem);
     }
 
@@ -87,7 +97,10 @@ class App extends React.Component {
                         lists={this.props.lists} 
                         onListClick={this.handleListClickEvent} 
                         onListAddClick={this.handleListAddEvent}
+                        selectedItem={this.state.selectedItem}
                         editModeItem={this.state.editModeItem}
+                        onChangeItemEdit={this.handleItemEditChange}
+                        onBlur={this.handleItemEditBlur}
                     />
                     <MainPane 
                         items={this.state.items}

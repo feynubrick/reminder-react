@@ -8,7 +8,15 @@ const ListsViewer = function (props) {
             <ul>
                 {
                     props.lists.map((list) => (
-                        <List list={list} key={list.id} onListClick={props.onListClick} />
+                        <List 
+                            list={list}
+                            key={list.id}
+                            onListClick={props.onListClick}
+                            selectedItem={props.selectedItem}
+                            editModeItem={props.editModeItem}
+                            onChangeItemEdit={props.onChangeItemEdit}
+                            onBlur={props.onBlur}
+                        />
                     ))
                 }
             </ul>

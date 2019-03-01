@@ -9,7 +9,15 @@ const ListPane = function (props) {
             #ListPane
             <SearchBar />
             <ListAddBar className="row" onListAddClick={props.onListAddClick} />
-            <ListsViewer className="row" lists={props.lists} onListClick={props.onListClick} />
+            <ListsViewer
+                className="row"
+                lists={props.lists}
+                onListClick={props.onListClick}
+                selectedItem={props.selectedItem}
+                editModeItem={props.editModeItem}
+                onChangeItemEdit={props.onChangeItemEdit}
+                onBlur={props.onBlur}
+            />
         </div>
     );
 };

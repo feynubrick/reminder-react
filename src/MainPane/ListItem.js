@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ListItem = function (props) {
-    console.log('ListItem()\nprops.item: ', props.item);
+    // console.log('ListItem()\nprops.item: ', props.item);
     const style = {
         textDecoration: props.item.done ? 'line-through' : 'none',
         color: props.selectedItem === props.item ? 'blue' : 'black'
@@ -15,7 +15,7 @@ const ListItem = function (props) {
 
     const handleCheckboxOnChange = function (event) {
         props.onCheckboxClick(event, props.item);
-    }    
+    }
 
     const handleEditModeInputChange = function (event) {
         props.onChangeItemEdit(event, props.item);
