@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchBar from './SearchBar';
 import ListPane from './ListPane/ListPane';
 import MainPane from './MainPane/MainPane';
 import { ListData, ItemData } from './DataDef';
@@ -54,8 +53,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="container bg-primary">
-                <SearchBar />
+            <div className="container bg-primary">                
                 <div className="row">
                     <ListPane
                         lists={this.props.lists} 

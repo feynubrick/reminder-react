@@ -10,7 +10,8 @@ const ListItem = function (props) {
         props.onItemClick(event, props.item);
     }
     return (
-        <li style={style} onClick={handleItemOnClick}>
+        <li style={style}>
+            <input type="checkbox" checked={props.item.done} onChange={handleItemOnClick}/>
             { props.item.text }
         </li>
     );
