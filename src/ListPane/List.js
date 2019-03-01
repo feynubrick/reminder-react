@@ -3,7 +3,7 @@ import React from 'react';
 const List = function (props) {
 
     const style = {
-        color: props.selectedItem === props.item ? 'blue' : 'black'
+        color: props.selectedItem === props.list ? 'blue' : 'black'
     }
 
     const handleListClick = function (event) {
@@ -32,6 +32,8 @@ const List = function (props) {
                     onBlur={props.onBlur}
                     autoFocus={true}
                     onKeyPress={handleEnterKeyPress}
+                    size={15}
+                    outline="none"
                 /> 
                 : <span onClick={handleListClick} onBlur={props.onBlur}>{props.list.name}</span>
             }

@@ -33,7 +33,16 @@ const ListItem = function (props) {
             <input type="checkbox" checked={props.item.done} onChange={handleCheckboxOnChange}/>
             {
                 props.editModeItem === props.item ? 
-                <input type="text" value={props.item.text} onChange={handleEditModeInputChange} onBlur={props.onBlur} autoFocus={true} onKeyPress={handleEnterKeyPress}/> 
+                <input 
+                    type="text" 
+                    value={props.item.text} 
+                    onChange={handleEditModeInputChange} 
+                    onBlur={props.onBlur} 
+                    autoFocus={true} 
+                    onKeyPress={handleEnterKeyPress}
+                    size="auto"
+                    outline="none"
+                /> 
                 : <span onClick={handleItemOnClick} onBlur={props.onBlur}>{props.item.text}</span>
             }
         </li>
