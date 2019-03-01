@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { ListData, ItemData} from './DataDef';
 
-var lists = ['test1', 'test2', 'test3'];
+var lists = ['odd', 'even'];
 lists = lists.map((listName) => (
     new ListData(listName)
 ));
 
-lists.forEach((list) => {
-    for (var i = 0; i < 5; i++) {
-        list.items.push(new ItemData(`${list.name}: item${i}`));
-    }
-});
 
+var items = [];
+for (var i = 0; i < 10; i++) {
+    items.push(new ItemData(`${lists[i % 2].name}: item${i}`, false, lists[i % 2]));
+}
 
-ReactDOM.render(<App lists={lists} />, document.getElementById('root'));
+ReactDOM.render(<App lists={lists} items={items}/>, document.getElementById('root'));

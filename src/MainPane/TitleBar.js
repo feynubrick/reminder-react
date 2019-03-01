@@ -1,11 +1,11 @@
 import React from 'react';
 
-const TitleBar = function () {
+const TitleBar = function (props) {
     return (
-        <div className="container bg-warning m-1">
+        <div className="row bg-warning m-1">
             #TitleBar
-            <h1>Title</h1>
-            <button>ItemAddButton</button>
+            <h1>{ props.currList.name }</h1>
+            <button onClick={props.onAddButtonClick} >ItemAddButton</button>
         </div>
     );
 };

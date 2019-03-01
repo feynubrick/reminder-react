@@ -2,7 +2,7 @@ import React from 'react';
 
 const SearchBar = function () {
     return (
-        <div className="container bg-secondary m-1">
+        <div className="row bg-secondary m-1">
             SearchBar
         </div>
     );

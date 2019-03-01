@@ -5,11 +5,11 @@ import CompletedItemsViewer from './CompletedItemsViewer';
 
 const MainPane = function (props) {
     return (
-        <div className="container bg-secondary m-1">
+        <div className="bg-secondary m-1 col-9">
             #MainPane
-            <TitleBar />
+            <TitleBar currList={props.currList} onAddButtonClick={props.onAddButtonClick} />
             <CompletedItemsViewer />
-            <ListItemsViewer list={props.currentList} />
+            <ListItemsViewer items={props.items} currList={props.currList} />
         </div>
     );
 }

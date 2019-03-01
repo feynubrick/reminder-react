@@ -7,11 +7,11 @@ const ListData = function (name) {
     this.items = [];
 }
 
-const ItemData = function (text, done) {
+const ItemData = function (text, done, list) {
     this.id = itemId++;
     this.text = text;
     this.done = done ? true : false;
-    // this.listId = listId;
+    this.list = list;
 }
 
 export { ListData, ItemData };
