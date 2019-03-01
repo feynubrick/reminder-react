@@ -7,7 +7,7 @@ const ListPane = function (props) {
         <div className="bg-secondary m-1 col">
             #ListPane
             <ListAddBar className="row"/>
-            <ListsViewer className="row" lists={props.lists}/>
+            <ListsViewer className="row" lists={props.lists} onListClick={props.onListClick} />
         </div>
     );
 };

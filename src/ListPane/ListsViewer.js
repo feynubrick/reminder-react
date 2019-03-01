@@ -8,7 +8,7 @@ const ListsViewer = function (props) {
             <ul>
                 {
                     props.lists.map((list) => (
-                        <List name={list.name} key={list.id}/>
+                        <List list={list} key={list.id} onListClick={props.onListClick} />
                     ))
                 }
             </ul>

@@ -9,7 +9,7 @@ const ListItemsViewer = function (props) {
             <ul className="bg-info">
                 {
                     props.items.filter(
-                        (item) => (item.list === props.currList)
+                        (item) => (item.list === props.currList && item.done === false)
                     ).map(
                         (item) => (<ListItem text={item.text} key={item.id}/>)
                     )

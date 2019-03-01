@@ -15,6 +15,12 @@ class App extends React.Component {
         };
 
         this.handleItemAddEvent = this.handleItemAddEvent.bind(this);
+        this.handleListClickEvent = this.handleListClickEvent.bind(this);
+    }
+
+    handleListClickEvent(event, list) {
+        console.log('handleListClickEvent() called with list: ', list.name);
+        this.setState({ currList: list});
     }
 
     handleItemAddEvent() {
@@ -23,12 +29,21 @@ class App extends React.Component {
         this.setState({ items: arr });
     }
 
+    componentDidMount() {
+        console.log('componentDidMount()');
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate()');
+        console.log('the last item of items: ', this.state.items[this.state.items.length - 1]);
+    }
+
     render() {
         return (
             <div className="container bg-primary">
                 <SearchBar />
                 <div className="row">
-                    <ListPane lists={this.props.lists} />
+                    <ListPane lists={this.props.lists} onListClick={this.handleListClickEvent} />
                     <MainPane 
                         items={this.state.items}
                         currList={this.state.currList}

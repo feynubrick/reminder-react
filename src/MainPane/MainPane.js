@@ -8,7 +8,7 @@ const MainPane = function (props) {
         <div className="bg-secondary m-1 col-9">
             #MainPane
             <TitleBar currList={props.currList} onAddButtonClick={props.onAddButtonClick} />
-            <CompletedItemsViewer />
+            <CompletedItemsViewer items={props.items} currList={props.currList} />
             <ListItemsViewer items={props.items} currList={props.currList} />
         </div>
     );
