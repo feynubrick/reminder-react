@@ -16,6 +16,7 @@ class App extends React.Component {
 
         this.handleItemAddEvent = this.handleItemAddEvent.bind(this);
         this.handleListClickEvent = this.handleListClickEvent.bind(this);
+        this.handleItemClickEvent = this.handleItemClickEvent.bind(this);
     }
 
     handleListClickEvent(event, list) {
@@ -27,6 +28,23 @@ class App extends React.Component {
         var arr = this.state.items.slice();
         arr.push(new ItemData('', false, this.state.currList));
         this.setState({ items: arr });
+    }
+
+    handleItemClickEvent(event, item) {
+        console.log('handleItemClickEvent() with item: ', item);
+        item.done = !item.done;
+        // var arr = this.state.items.slice();
+        // var index = -1;
+        // for (let i = 0; i < arr.length; i++) {
+        //     if (arr[i].id === clickedItem.id) {
+        //         index = i;
+        //         break;
+        //     }
+        // }
+
+        // arr[index].done = !arr[index].done;
+
+        this.setState({ items: this.state.items });
     }
 
     componentDidMount() {
@@ -48,6 +66,7 @@ class App extends React.Component {
                         items={this.state.items}
                         currList={this.state.currList}
                         onAddButtonClick={this.handleItemAddEvent}
+                        onLiskItemClick={this.handleItemClickEvent}
                     />
                 </div>
             </div>

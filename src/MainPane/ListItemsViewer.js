@@ -11,7 +11,7 @@ const ListItemsViewer = function (props) {
                     props.items.filter(
                         (item) => (item.list === props.currList && item.done === false)
                     ).map(
-                        (item) => (<ListItem text={item.text} key={item.id}/>)
+                        (item) => (<ListItem item={item} key={item.id} onItemClick={props.onItemClick} />)
                     )
                 }
             </ul>
