@@ -2,7 +2,7 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import ListPane from './ListPane/ListPane';
 import MainPane from './MainPane/MainPane';
-import {ListData, ItemData} from './DataDef';
+import { ListData, ItemData } from './DataDef';
 
 class App extends React.Component {
     constructor(props) {
@@ -17,6 +17,7 @@ class App extends React.Component {
         this.handleItemAddEvent = this.handleItemAddEvent.bind(this);
         this.handleListClickEvent = this.handleListClickEvent.bind(this);
         this.handleItemClickEvent = this.handleItemClickEvent.bind(this);
+        this.handleListAddEvent = this.handleListAddEvent.bind(this);
     }
 
     handleListClickEvent(event, list) {
@@ -25,26 +26,21 @@ class App extends React.Component {
     }
 
     handleItemAddEvent() {
-        var arr = this.state.items.slice();
-        arr.push(new ItemData('', false, this.state.currList));
-        this.setState({ items: arr });
+        this.state.items.push(new ItemData('', false, this.state.currList));
+        this.setState({ items: this.state.items });
     }
 
     handleItemClickEvent(event, item) {
         console.log('handleItemClickEvent() with item: ', item);
         item.done = !item.done;
-        // var arr = this.state.items.slice();
-        // var index = -1;
-        // for (let i = 0; i < arr.length; i++) {
-        //     if (arr[i].id === clickedItem.id) {
-        //         index = i;
-        //         break;
-        //     }
-        // }
-
-        // arr[index].done = !arr[index].done;
 
         this.setState({ items: this.state.items });
+    }
+
+    handleListAddEvent() {
+        console.log('handleListAddEvent()');
+        this.state.lists.push( new ListData(''));
+        this.setState({ lists : this.state.lists });
     }
 
     componentDidMount() {
@@ -61,7 +57,11 @@ class App extends React.Component {
             <div className="container bg-primary">
                 <SearchBar />
                 <div className="row">
-                    <ListPane lists={this.props.lists} onListClick={this.handleListClickEvent} />
+                    <ListPane
+                        lists={this.props.lists} 
+                        onListClick={this.handleListClickEvent} 
+                        onListAddClick={this.handleListAddEvent}
+                    />
                     <MainPane 
                         items={this.state.items}
                         currList={this.state.currList}

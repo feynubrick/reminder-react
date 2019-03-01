@@ -1,9 +1,14 @@
 import React from 'react';
 
-const ListAddBar = function () {
+const ListAddBar = function (props) {
+
+    const handleAddListButtonClick = () => {
+        props.onListAddClick();
+    }
+
     return (
         <div className="container bg-success m-1">
-            #ListAddBar
+            <button onClick={handleAddListButtonClick}>Add List</button>
         </div>
     );
 };
