@@ -53,7 +53,7 @@ class App extends React.Component {
             }
             let items = this.state.items.filter((item)=>(item.list !== itemToDelete));
             this.state.lists.splice(index, 1);
-            this.setState({ items: items, lists: this.state.lists});
+            this.setState({ items: items, lists: this.state.lists, currList:this.state.lists[0]});
         }
     }
 
@@ -107,7 +107,7 @@ class App extends React.Component {
         console.log('handleListAddEvent()');
         let newItem = new ListData(`새로운 목록 ${this.listCount++}`);
         this.state.lists.push(newItem);
-        this.setState({ lists : this.state.lists, selectedItem: newItem, editModeItem: newItem });
+        this.setState({ lists : this.state.lists, selectedItem: newItem, editModeItem: newItem, currList: newItem });
     }
 
     componentDidMount() {

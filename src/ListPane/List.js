@@ -16,11 +16,11 @@ const List = function (props) {
 
     const handleKeyEvent = function (event) {
         console.log('handleKeyPress() with event.key: ', event.key);
-        if (event.key === 'Enter' && props.editModeItem === props.item) {
+        if (event.key === 'Enter' && props.editModeItem === props.list) {
             props.onBlur();
         }
 
-        if (event.key === 'Escape' && props.editModeItem !== props.item) {
+        if (event.key === 'Escape' && props.editModeItem !== props.list) {
             props.onDelete(event, props.list);
         }
     }
