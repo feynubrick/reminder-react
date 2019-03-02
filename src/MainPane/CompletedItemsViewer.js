@@ -4,9 +4,9 @@ import StatusBar from './StatusBar';
 
 const CompletedItemsViewer = function (props) {
     return (
-        <div className="container bg-warning m-1">
+        <div className="container m-1">
             <StatusBar items={props.items} currList={props.currList} />
-            <ul className="bg-info m-1">
+            <ul className="list-unstyled m-1">
                 {
                     props.items.filter(
                         (item) => (item.list === props.currList && item.done === true)

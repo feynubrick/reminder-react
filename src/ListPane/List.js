@@ -3,8 +3,11 @@ import React from 'react';
 const List = function (props) {
 
     const style = {
-        color: props.selectedItem === props.list ? 'blue' : 'black'
+        // color: props.selectedItem === props.list ? 'blue' : 'black'
     }
+
+    let className = 'list-group-item';
+    className += props.selectedItem === props.list ? ' active' : '';
 
     const handleListClick = function (event) {
         props.onListClick(event, props.list);
@@ -26,7 +29,7 @@ const List = function (props) {
     }
 
     return (
-        <li onClick={handleListClick} style={style}>
+        <li className={className} onClick={handleListClick} style={style}>
             {
                 props.editModeItem === props.list ? 
                 <input 

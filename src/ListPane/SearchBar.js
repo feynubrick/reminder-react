@@ -8,8 +8,8 @@ const SearchBar = function (props) {
     }
 
     return (
-        <div className="row bg-secondary m-1">
-            <input onChange={onInputChange} placeholder="Search..." value={props.search} ></input>
+        <div className="input-group">
+            <input className="m-2 input-group-text" onChange={onInputChange} placeholder="Search..." value={props.search} ></input>
         </div>
     );
 };

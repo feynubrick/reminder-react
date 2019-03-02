@@ -162,35 +162,39 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="container bg-primary">                
+            <div className="container">                
                 <div className="row">
-                    <ListPane
-                        lists={this.props.lists} 
-                        onListClick={this.handleListClickEvent} 
-                        onListAddClick={this.handleListAddEvent}
-                        selectedItem={this.state.selectedItem}
-                        editModeItem={this.state.editModeItem}
-                        onChangeItemEdit={this.handleItemEditChange}
-                        onBlur={this.handleItemEditBlur}
-                        onDelete={this.handleDeleteEvent}
-                        search={this.state.search}
-                        onChangeSearch={this.handleSearchInputChange}
-                    />
-                    <MainPane 
-                        items={this.state.items}
-                        currList={this.state.currList}
-                        onAddButtonClick={this.handleItemAddEvent}
-                        onCheckboxClick={this.handleItemCheckboxClickEvent}
-                        onItemClick={this.handleItemClickEvent}
-                        selectedItem={this.state.selectedItem}
-                        editModeItem={this.state.editModeItem}
-                        onChangeItemEdit={this.handleItemEditChange}
-                        onBlur={this.handleItemEditBlur}
-                        onDelete={this.handleDeleteEvent}
-                        search={this.state.search}
-                        searchMode={this.state.searchMode}
-                        onCloseSearch={this.handleCloseSearchEvent}
-                    />
+                    <div className="p-3 bg-secondary rounded col-3">
+                        <ListPane
+                            lists={this.props.lists} 
+                            onListClick={this.handleListClickEvent} 
+                            onListAddClick={this.handleListAddEvent}
+                            selectedItem={this.state.selectedItem}
+                            editModeItem={this.state.editModeItem}
+                            onChangeItemEdit={this.handleItemEditChange}
+                            onBlur={this.handleItemEditBlur}
+                            onDelete={this.handleDeleteEvent}
+                            search={this.state.search}
+                            onChangeSearch={this.handleSearchInputChange}
+                        />
+                    </div>
+                    <div className="rounded col-9">
+                        <MainPane 
+                            items={this.state.items}
+                            currList={this.state.currList}
+                            onAddButtonClick={this.handleItemAddEvent}
+                            onCheckboxClick={this.handleItemCheckboxClickEvent}
+                            onItemClick={this.handleItemClickEvent}
+                            selectedItem={this.state.selectedItem}
+                            editModeItem={this.state.editModeItem}
+                            onChangeItemEdit={this.handleItemEditChange}
+                            onBlur={this.handleItemEditBlur}
+                            onDelete={this.handleDeleteEvent}
+                            search={this.state.search}
+                            searchMode={this.state.searchMode}
+                            onCloseSearch={this.handleCloseSearchEvent}
+                        />
+                    </div>
                 </div>
             </div>
         );

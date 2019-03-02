@@ -3,8 +3,8 @@ import List from './List';
 
 const ListsViewer = function (props) {
     return (
-        <div className="container bg-success m-1">
-            <ul>
+        <div className="container">
+            <ul className="list-group list-group-flush">
                 {
                     props.lists.map((list) => (
                         <List 

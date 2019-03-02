@@ -4,8 +4,8 @@ import ListItem from './ListItem';
 const ListItemsViewer = function (props) {
     console.log('props.list: ', props.currList);
     return (
-        <div className="container bg-warning m-1">
-            <ul className="bg-info">
+        <div className="container">
+            <ul className="list-group">
                 {
                     props.items.filter(
                         (item) => (item.list === props.currList && item.done === false)

@@ -2,9 +2,9 @@ import React from 'react';
 
 const TitleBar = function (props) {
     return (
-        <div className="row bg-warning m-1">
-            <h1>{ props.currList.name }</h1>
-            <button onClick={props.onAddButtonClick} >ItemAddButton</button>
+        <div className="row m-1">
+            <h1 className="m-3">{ props.currList.name }</h1>
+            <button type="button" className="m-3 btn btn-secondary btn-xs" onClick={props.onAddButtonClick} >Add Item</button>
         </div>
     );
 };

@@ -4,8 +4,12 @@ const ListItem = function (props) {
     // console.log('ListItem()\nprops.item: ', props.item);
     const style = {
         textDecoration: props.item.done ? 'line-through' : 'none',
-        color: props.selectedItem === props.item ? 'blue' : 'black'
+        // color: props.selectedItem === props.item ? 'blue' : 'black'
     }
+
+    let className = 'list-group-item';
+    className += props.selectedItem === props.item ? ' active' : '';
+    className += props.item.done ? ' list-group-item-light' : '';
 
     const handleItemOnClick = function (event) {
         if(props.selectedItem !== undefined) {
@@ -33,8 +37,8 @@ const ListItem = function (props) {
     }
 
     return (
-        <li style={style}>
-            <input type="checkbox" checked={props.item.done} onChange={handleCheckboxOnChange}/>
+        <li style={style} className={className}>
+            <input className="mr-3" type="checkbox" checked={props.item.done} onChange={handleCheckboxOnChange}/>
             {
                 props.editModeItem === props.item ? 
                 <input 

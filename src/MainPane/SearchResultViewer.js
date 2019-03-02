@@ -24,7 +24,7 @@ class SearchResultViewer extends React.Component {
         var searchResults = this.props.items.filter((item) => (item.text.indexOf(this.props.search) > -1 && (!item.done || !this.state.hideDoneItems)));
         console.log('searchResults: ', searchResults);
         return (
-            <div className="container bg-warning m-1">
+            <div className="container m-1">
                 <h1>Search Results for "{this.props.search}"</h1>
                     { 
                         searchResults.map((item) => (

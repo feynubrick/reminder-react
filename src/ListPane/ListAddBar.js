@@ -7,9 +7,7 @@ const ListAddBar = function (props) {
     }
 
     return (
-        <div className="container bg-success m-1">
-            <button onClick={handleAddListButtonClick}>Add List</button>
-        </div>
+        <button type="button" className="mb-2 btn btn-primary btn-block" onClick={handleAddListButtonClick}>Add List</button>
     );
 };
 
