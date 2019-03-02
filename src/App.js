@@ -24,6 +24,37 @@ class App extends React.Component {
         this.handleListAddEvent = this.handleListAddEvent.bind(this);
         this.handleItemEditChange = this.handleItemEditChange.bind(this);
         this.handleItemEditBlur = this.handleItemEditBlur.bind(this);
+        this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
+    }
+
+    handleDeleteEvent(event, itemToDelete) {
+        console.log('delete event! with item: ', itemToDelete);
+
+        if (itemToDelete instanceof ItemData) {
+            console.log('ItemData');
+            let index = -1;
+            for (let i = 0; i < this.state.items.length; i++) {
+                if (this.state.items[i] === itemToDelete) {
+                    index = i;
+                    break;
+                }
+            }
+            console.log('index: ', index);
+            this.state.items.splice(index, 1);
+            this.setState({ items: this.state.items });
+        } else if (itemToDelete instanceof ListData) {
+            console.log('ItemData');
+            let index = -1;
+            for (let i = 0; i < this.state.lists.length; i++) {
+                if (this.state.lists[i] === itemToDelete) {
+                    index = i;
+                    break;
+                }
+            }
+            let items = this.state.items.filter((item)=>(item.list !== itemToDelete));
+            this.state.lists.splice(index, 1);
+            this.setState({ items: items, lists: this.state.lists});
+        }
     }
 
     handleItemEditBlur() {
@@ -51,7 +82,7 @@ class App extends React.Component {
     }
 
     handleItemAddEvent() {
-        var newItem = new ItemData('', false, this.state.currList);
+        let newItem = new ItemData('', false, this.state.currList);
         this.state.items.push(newItem);
         this.setState({ items: this.state.items, selectedItem: newItem, editModeItem: newItem });
     }
@@ -74,8 +105,9 @@ class App extends React.Component {
 
     handleListAddEvent() {
         console.log('handleListAddEvent()');
-        this.state.lists.push(new ListData(`새로운 목록 ${this.listCount++}`));
-        this.setState({ lists : this.state.lists });
+        let newItem = new ListData(`새로운 목록 ${this.listCount++}`);
+        this.state.lists.push(newItem);
+        this.setState({ lists : this.state.lists, selectedItem: newItem, editModeItem: newItem });
     }
 
     componentDidMount() {
@@ -101,6 +133,7 @@ class App extends React.Component {
                         editModeItem={this.state.editModeItem}
                         onChangeItemEdit={this.handleItemEditChange}
                         onBlur={this.handleItemEditBlur}
+                        onDelete={this.handleDeleteEvent}
                     />
                     <MainPane 
                         items={this.state.items}
@@ -112,6 +145,7 @@ class App extends React.Component {
                         editModeItem={this.state.editModeItem}
                         onChangeItemEdit={this.handleItemEditChange}
                         onBlur={this.handleItemEditBlur}
+                        onDelete={this.handleDeleteEvent}
                     />
                 </div>
             </div>

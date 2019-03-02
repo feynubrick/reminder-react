@@ -23,6 +23,7 @@ const MainPane = function (props) {
                 editModeItem={props.editModeItem}
                 onChangeItemEdit={props.onChangeItemEdit}
                 onBlur={props.onBlur}
+                onDelete={props.onDelete}
             />
         </div>
     );

@@ -14,10 +14,14 @@ const List = function (props) {
         props.onChangeItemEdit(event, props.list);
     }
 
-    const handleEnterKeyPress = function (event) {
-        console.log('handleEnterKeyPress() with event.key: ', event.key);
-        if (event.key === 'Enter') {
+    const handleKeyEvent = function (event) {
+        console.log('handleKeyPress() with event.key: ', event.key);
+        if (event.key === 'Enter' && props.editModeItem === props.item) {
             props.onBlur();
+        }
+
+        if (event.key === 'Escape' && props.editModeItem !== props.item) {
+            props.onDelete(event, props.list);
         }
     }
 
@@ -31,11 +35,17 @@ const List = function (props) {
                     onChange={handleEditModeInputChange}
                     onBlur={props.onBlur}
                     autoFocus={true}
-                    onKeyPress={handleEnterKeyPress}
+                    onKeyPress={handleKeyEvent}
                     size={15}
                     outline="none"
                 /> 
-                : <span onClick={handleListClick} onBlur={props.onBlur}>{props.list.name}</span>
+                : <span 
+                    onClick={handleListClick} 
+                    onBlur={props.onBlur}
+                    onKeyDown={handleKeyEvent} 
+                    tabIndex="0"
+                >
+                {props.list.name}</span>
             }
         </li>
     );
