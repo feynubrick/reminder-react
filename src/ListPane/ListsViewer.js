@@ -4,7 +4,6 @@ import List from './List';
 const ListsViewer = function (props) {
     return (
         <div className="container bg-success m-1">
-            #ListsViewer
             <ul>
                 {
                     props.lists.map((list) => (

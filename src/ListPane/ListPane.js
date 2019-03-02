@@ -6,7 +6,6 @@ import SearchBar from './SearchBar';
 const ListPane = function (props) {
     return (
         <div className="bg-secondary m-1 col">
-            #ListPane
             <SearchBar onChange={props.onChangeSearch} search={props.search} />
             <ListAddBar className="row" onListAddClick={props.onListAddClick} />
             <ListsViewer

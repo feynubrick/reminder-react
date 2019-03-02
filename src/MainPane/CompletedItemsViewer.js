@@ -5,8 +5,7 @@ import StatusBar from './StatusBar';
 const CompletedItemsViewer = function (props) {
     return (
         <div className="container bg-warning m-1">
-            #CompletedItemsViewer
-            <StatusBar />
+            <StatusBar items={props.items} currList={props.currList} />
             <ul className="bg-info m-1">
                 {
                     props.items.filter(

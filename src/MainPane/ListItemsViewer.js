@@ -5,7 +5,6 @@ const ListItemsViewer = function (props) {
     console.log('props.list: ', props.currList);
     return (
         <div className="container bg-warning m-1">
-            #ListItemsViewer
             <ul className="bg-info">
                 {
                     props.items.filter(

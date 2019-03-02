@@ -7,7 +7,6 @@ import SearchResultViewer from './SearchResultViewer';
 const MainPane = function (props) {
     return (
         <div className="bg-secondary m-1 col-9">
-            #MainPane
             <TitleBar currList={props.currList} onAddButtonClick={props.onAddButtonClick} />
             
             {
