@@ -22,6 +22,7 @@ const MainPane = function (props) {
                         onBlur={props.onBlur}
                         onDelete={props.onDelete}
                         search={props.search}
+                        onCloseSearch={props.onCloseSearch}
                     />
                     :
                     <div>

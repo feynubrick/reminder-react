@@ -30,6 +30,7 @@ class App extends React.Component {
         // this.handleSearchInputChange = this.debounce(this.handleSearchInputChange.bind(this), 1000).bind(this);
         this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+        this.handleCloseSearchEvent = this.handleCloseSearchEvent.bind(this);
     }
 
     debounce(func, wait) {
@@ -44,6 +45,10 @@ class App extends React.Component {
             func(value);
           }, wait);
         }
+    }
+
+    handleCloseSearchEvent(event) {
+        this.setState({ searchMode : false, search : '' });
     }
 
     handleSearchSubmit(event) {
@@ -184,6 +189,7 @@ class App extends React.Component {
                         onDelete={this.handleDeleteEvent}
                         search={this.state.search}
                         searchMode={this.state.searchMode}
+                        onCloseSearch={this.handleCloseSearchEvent}
                     />
                 </div>
             </div>
