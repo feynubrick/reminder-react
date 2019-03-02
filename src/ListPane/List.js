@@ -20,7 +20,7 @@ const List = function (props) {
             props.onBlur();
         }
 
-        if (event.key === 'Escape' && props.editModeItem !== props.list) {
+        if (event.key === 'Escape') {
             props.onDelete(event, props.list);
         }
     }
@@ -38,6 +38,8 @@ const List = function (props) {
                     onKeyPress={handleKeyEvent}
                     size={15}
                     outline="none"
+                    onKeyDown={handleKeyEvent} 
+                    tabIndex="0"
                 /> 
                 : <span 
                     onClick={handleListClick} 

@@ -13,6 +13,8 @@ class App extends React.Component {
             lists: props.lists,
             selectedItem: null,
             editModeItem: null,
+            search: '',
+            searchMode: false,
         };
 
         this.listCount = 1;
@@ -25,6 +27,27 @@ class App extends React.Component {
         this.handleItemEditChange = this.handleItemEditChange.bind(this);
         this.handleItemEditBlur = this.handleItemEditBlur.bind(this);
         this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
+        // this.handleSearchInputChange = this.debounce(this.handleSearchInputChange.bind(this), 1000).bind(this);
+        this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    }
+
+    debounce(func, wait) {
+        var timer;
+        var value;
+    
+        return function (event) {
+          clearTimeout(timer);
+    
+          value = event.target.value;
+          timer = setTimeout(() => {
+            func(value);
+          }, wait);
+        }
+    }
+
+    handleSearchSubmit(event) {
+        this.setState({ searchMode : true });
     }
 
     handleDeleteEvent(event, itemToDelete) {
@@ -39,6 +62,7 @@ class App extends React.Component {
                     break;
                 }
             }
+
             console.log('index: ', index);
             this.state.items.splice(index, 1);
             this.setState({ items: this.state.items });
@@ -51,6 +75,7 @@ class App extends React.Component {
                     break;
                 }
             }
+
             let items = this.state.items.filter((item)=>(item.list !== itemToDelete));
             this.state.lists.splice(index, 1);
             this.setState({ items: items, lists: this.state.lists, currList:this.state.lists[0]});
@@ -60,6 +85,14 @@ class App extends React.Component {
     handleItemEditBlur() {
         console.log('handleItemEditBlur()')
         this.setState({ selectedItem : null, editModeItem : null });
+    }
+
+    handleSearchInputChange(event) {
+        if (event.target.value === '') {
+            this.setState({ searchMode : false, search : event.target.value});
+        } else {
+            this.setState({ searchMode : true, search : event.target.value });
+        }
     }
 
     handleItemEditChange(event, item) {
@@ -119,6 +152,7 @@ class App extends React.Component {
         console.log('## items: ', this.state.items);
         console.log('## selectedItem: ', this.state.selectedItem);
         console.log('## editModeItem: ', this.state.editModeItem);
+        console.log('## search: ', this.state.search);
     }
 
     render() {
@@ -134,6 +168,8 @@ class App extends React.Component {
                         onChangeItemEdit={this.handleItemEditChange}
                         onBlur={this.handleItemEditBlur}
                         onDelete={this.handleDeleteEvent}
+                        search={this.state.search}
+                        onChangeSearch={this.handleSearchInputChange}
                     />
                     <MainPane 
                         items={this.state.items}
@@ -146,6 +182,8 @@ class App extends React.Component {
                         onChangeItemEdit={this.handleItemEditChange}
                         onBlur={this.handleItemEditBlur}
                         onDelete={this.handleDeleteEvent}
+                        search={this.state.search}
+                        searchMode={this.state.searchMode}
                     />
                 </div>
             </div>
