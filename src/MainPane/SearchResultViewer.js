@@ -41,8 +41,8 @@ class SearchResultViewer extends React.Component {
                             />
                         ))
                     }
-                <button onClick={this.handleFilterDoneToggle}>See/Hide Items Already Done</button>    
-                <button onClick={this.handleButtonClick}>Close</button>
+                <button type="button" className="mt-2 mr-2 mb-2 btn btn-primary" onClick={this.handleFilterDoneToggle}>See/Hide Items Already Done</button>    
+                <button type="button" className="mt-2 mb-2 btn btn-danger" onClick={this.handleButtonClick}>Close</button>
             </div>
         );
     }

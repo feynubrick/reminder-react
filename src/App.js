@@ -178,7 +178,7 @@ class App extends React.Component {
                             onChangeSearch={this.handleSearchInputChange}
                         />
                     </div>
-                    <div className="rounded col-9">
+                    <div className="rounded rounded col-9">
                         <MainPane 
                             items={this.state.items}
                             currList={this.state.currList}
